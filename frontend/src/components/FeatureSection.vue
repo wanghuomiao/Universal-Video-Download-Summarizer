@@ -1,7 +1,8 @@
 <template>
-  <section id="features" class="py-16 sm:py-20 bg-bg-section" aria-labelledby="features-heading">
+  <section id="features" class="py-16 sm:py-20 bg-transparent" aria-labelledby="features-heading">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-12">
+        <p class="section-kicker text-[11px] sm:text-xs mb-3">Curated Advantages</p>
         <h2 id="features-heading" class="text-2xl sm:text-3xl font-bold text-text-primary mb-3">
           为什么选择 <span class="text-primary">SaveAny</span> 视频下载器
         </h2>
@@ -14,7 +15,7 @@
         <article
           v-for="feature in features"
           :key="feature.title"
-          class="group bg-white rounded-2xl p-6 border border-border-light shadow-sm hover:shadow-md hover:border-primary/20 transition-all"
+          class="group rounded-2xl p-6 transition-all surface-card hover:-translate-y-1 hover:border-primary/20"
         >
           <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-2xl"
             :class="feature.bgClass" role="img" :aria-label="feature.title">
@@ -34,31 +35,31 @@ const features = [
     icon: '🌐',
     title: '支持 1800+ 平台',
     desc: 'YouTube、Bilibili、抖音、TikTok、Twitter、Instagram 等全球主流平台',
-    bgClass: 'bg-blue-50',
+    bgClass: 'bg-[linear-gradient(135deg,rgba(230,221,203,0.88),rgba(247,240,228,0.96))] text-primary',
   },
   {
     icon: '⚡',
     title: '极速解析下载',
     desc: '智能解析视频链接，自动匹配最优下载方式，速度快人一步',
-    bgClass: 'bg-amber-50',
+    bgClass: 'bg-[linear-gradient(135deg,rgba(245,233,207,0.9),rgba(254,248,236,0.98))] text-primary-dark',
   },
   {
     icon: '📱',
     title: '手机也能用',
     desc: '完美适配手机浏览器，随时随地，想下就下，无需安装任何 App',
-    bgClass: 'bg-green-50',
+    bgClass: 'bg-[linear-gradient(135deg,rgba(232,239,228,0.9),rgba(249,252,245,0.98))] text-primary-dark',
   },
   {
     icon: '🎬',
     title: '多种清晰度',
     desc: '支持从 360p 到 4K 多种清晰度选择，满足不同场景需求',
-    bgClass: 'bg-purple-50',
+    bgClass: 'bg-[linear-gradient(135deg,rgba(236,230,224,0.9),rgba(250,245,239,0.98))] text-primary-dark',
   },
   {
     icon: '🤖',
     title: 'AI 视频总结',
     desc: 'AI 智能分析视频内容，一键生成摘要、思维导图，还能针对视频提问',
-    bgClass: 'bg-rose-50',
+    bgClass: 'bg-[linear-gradient(135deg,rgba(245,232,224,0.9),rgba(253,247,242,0.98))] text-primary-dark',
   },
 ]
 </script>

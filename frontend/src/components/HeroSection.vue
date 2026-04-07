@@ -1,22 +1,25 @@
 <template>
-  <section class="relative overflow-hidden bg-gradient-to-b from-primary-light/50 to-white transition-all"
+  <section class="relative overflow-hidden transition-all"
     :class="compact ? 'pt-6 pb-4 sm:pt-8 sm:pb-6' : 'pt-16 pb-12 sm:pt-24 sm:pb-16'"
   >
     <!-- 装饰背景 -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-20 -left-20 w-72 h-72 bg-blue-400/5 rounded-full blur-3xl"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(201,170,118,0.2),transparent_34%),linear-gradient(180deg,rgba(255,251,245,0.95),rgba(249,243,235,0.84)_55%,rgba(247,240,230,0.38))]"></div>
+      <div class="absolute -top-36 -right-28 w-[28rem] h-[28rem] rounded-full bg-[radial-gradient(circle,rgba(81,61,39,0.12),transparent_70%)] blur-3xl"></div>
+      <div class="absolute -bottom-16 -left-16 w-80 h-80 rounded-full bg-[radial-gradient(circle,rgba(201,170,118,0.14),transparent_68%)] blur-3xl"></div>
+      <div class="absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(90deg,transparent,rgba(168,138,97,0.32),transparent)]"></div>
     </div>
 
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
       <template v-if="showSlogan">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-sm border border-border-light text-sm text-text-secondary"
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm lux-pill"
           :class="compact ? 'mb-3' : 'mb-6'"
         >
           <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
           支持 1800+ 平台，永久免费使用
         </div>
 
+        <p class="section-kicker text-[11px] sm:text-xs mb-3">Elegant Video Intelligence</p>
         <h1 :class="compact ? 'text-2xl sm:text-3xl mb-2' : 'text-3xl sm:text-5xl mb-4'" class="font-bold text-text-primary leading-tight">
           免费在线视频下载器
           <span class="text-primary">，一键保存</span>
@@ -28,7 +31,7 @@
 
       <!-- 搜索输入框 -->
       <div class="max-w-2xl mx-auto">
-        <form @submit.prevent="onSubmit" class="relative flex items-center" role="search" aria-label="视频链接解析">
+        <form @submit.prevent="onSubmit" class="relative flex items-center surface-card rounded-[2rem] p-2 sm:p-2.5" role="search" aria-label="视频链接解析">
           <div class="relative flex-1">
             <label for="video-url-input" class="sr-only">粘贴视频链接进行解析下载</label>
             <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -40,7 +43,7 @@
               v-model="url"
               type="url"
               :placeholder="placeholder"
-              class="w-full h-13 sm:h-14 pl-12 pr-4 rounded-full sm:rounded-r-none border border-border bg-white text-base text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all shadow-sm"
+              class="w-full h-13 sm:h-14 pl-12 pr-4 rounded-full sm:rounded-r-none text-base text-text-primary placeholder:text-text-muted lux-input-field"
               :disabled="loading"
               autocomplete="url"
             />
@@ -48,7 +51,7 @@
           <button
             type="submit"
             :disabled="loading || !url.trim()"
-            class="hidden sm:flex items-center gap-2 h-14 px-8 rounded-r-full bg-primary hover:bg-primary-dark text-white font-medium text-base transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg cursor-pointer"
+            class="hidden sm:flex items-center gap-2 h-14 px-8 rounded-r-full font-medium text-base disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer lux-button-primary"
           >
             <svg v-if="loading" class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -63,7 +66,7 @@
           <button
             type="submit"
             :disabled="loading || !url.trim()"
-            class="sm:hidden absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-primary text-white disabled:opacity-50 cursor-pointer"
+            class="sm:hidden absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full text-white disabled:opacity-50 cursor-pointer lux-button-primary"
           >
             <svg v-if="loading" class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -81,7 +84,7 @@
             v-for="example in examples"
             :key="example.label"
             @click="url = example.url"
-            class="px-3 py-1 rounded-full bg-white border border-border-light hover:border-primary hover:text-primary transition-all cursor-pointer"
+            class="px-3 py-1 rounded-full lux-pill-soft hover:border-primary hover:text-primary transition-all cursor-pointer"
           >
             {{ example.label }}
           </button>

@@ -1,7 +1,8 @@
 <template>
-  <section id="how-to-use" class="py-16 sm:py-20 bg-white" aria-labelledby="howto-heading">
+  <section id="how-to-use" class="py-16 sm:py-20 bg-transparent" aria-labelledby="howto-heading">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-12">
+        <p class="section-kicker text-[11px] sm:text-xs mb-3">Graceful Workflow</p>
         <h2 id="howto-heading" class="text-2xl sm:text-3xl font-bold text-text-primary mb-3">
           如何使用 <span class="text-primary">SaveAny</span> 下载视频
         </h2>
@@ -11,13 +12,13 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-        <article v-for="step in steps" :key="step.number" class="relative text-center">
-          <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary text-2xl font-bold flex items-center justify-center mx-auto mb-5">
+        <article v-for="step in steps" :key="step.number" class="relative text-center surface-card rounded-[1.75rem] px-5 py-8">
+          <div class="w-14 h-14 rounded-2xl bg-[linear-gradient(135deg,#6f532f_0%,#af894e_55%,#dcc08d_100%)] text-white text-2xl font-bold flex items-center justify-center mx-auto mb-5 shadow-[0_16px_26px_rgba(93,67,35,0.16)] text-tabular">
             {{ step.number }}
           </div>
           <h3 class="text-lg font-semibold text-text-primary mb-2">{{ step.title }}</h3>
           <p class="text-sm text-text-secondary leading-relaxed">{{ step.desc }}</p>
-          <div v-if="step.number < 3" class="hidden md:block absolute top-7 -right-4 text-border" aria-hidden="true">
+          <div v-if="step.number < 3" class="hidden md:block absolute top-7 -right-4 text-[rgba(168,138,97,0.45)]" aria-hidden="true">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" />
             </svg>

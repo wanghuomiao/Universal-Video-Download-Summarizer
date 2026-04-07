@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-white rounded-2xl border border-border shadow-lg overflow-hidden h-full flex flex-col">
+    <div class="rounded-2xl overflow-hidden h-full flex flex-col surface-card-strong">
         <!-- 标签页导航 -->
-        <div class="flex border-b border-border-light">
+      <div class="flex border-b border-[rgba(168,138,97,0.12)] bg-[rgba(255,250,243,0.6)]">
           <button
             v-for="tab in tabs"
             :key="tab.key"
@@ -23,7 +23,7 @@
         </div>
 
         <!-- 内容区域 -->
-        <div class="p-5 sm:p-6 min-h-[400px] flex-1 overflow-y-auto">
+        <div class="p-5 sm:p-6 min-h-[400px] flex-1 overflow-y-auto bg-[rgba(255,252,247,0.36)]">
           <!-- 加载状态 -->
           <div v-if="loading && !summaryText && activeTab === 'summary'" class="flex flex-col items-center justify-center py-16">
             <div class="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin mb-4"></div>
@@ -42,7 +42,7 @@
               AI 正在生成中...
             </div>
             <!-- 免费用户剩余次数提示 -->
-            <div v-if="quotaInfo && quotaInfo.remaining >= 0 && !loading" class="mt-4 p-3 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-between">
+            <div v-if="quotaInfo && quotaInfo.remaining >= 0 && !loading" class="mt-4 p-3 rounded-xl lux-muted-panel flex items-center justify-between">
               <span class="text-sm text-blue-700">
                 今日剩余 AI 总结次数：<strong>{{ quotaInfo.remaining }}</strong> / {{ quotaInfo.limit }}
               </span>
@@ -79,13 +79,13 @@
                     </button>
                     <div
                       v-if="showSubtitleDropdown"
-                      class="absolute right-0 top-full mt-1 bg-white rounded-lg shadow-lg border border-border-light py-1 z-10 min-w-[120px]"
+                      class="absolute right-0 top-full mt-1 rounded-lg py-1 z-10 min-w-[120px] surface-card-strong"
                     >
                       <button
                         v-for="fmt in subtitleFormats"
                         :key="fmt.key"
                         @click="downloadSubtitle(fmt.key)"
-                        class="w-full text-left px-3 py-2 text-xs text-text-primary hover:bg-bg-section transition-colors cursor-pointer flex items-center justify-between"
+                        class="w-full text-left px-3 py-2 text-xs text-text-primary hover:bg-[rgba(244,235,219,0.46)] transition-colors cursor-pointer flex items-center justify-between"
                       >
                         <span>{{ fmt.label }}</span>
                         <span class="text-text-muted">.{{ fmt.ext }}</span>
@@ -106,7 +106,7 @@
                 <div
                   v-for="(seg, idx) in subtitleData.segments"
                   :key="idx"
-                  class="flex gap-3 py-2 px-3 rounded-lg hover:bg-bg-section transition-colors group"
+                  class="flex gap-3 py-2 px-3 rounded-lg hover:bg-[rgba(244,235,219,0.34)] transition-colors group"
                 >
                   <span class="flex-shrink-0 text-xs text-primary font-mono pt-0.5 min-w-[60px]">
                     {{ formatTime(seg.start) }}
@@ -168,7 +168,7 @@
               </div>
               <div
                 ref="mindmapContainer"
-                class="mindmap-wrapper w-full border border-border-light rounded-xl bg-white overflow-hidden"
+                class="mindmap-wrapper w-full border border-[rgba(168,138,97,0.12)] rounded-xl bg-[rgba(255,252,247,0.9)] overflow-hidden"
                 :class="isFullscreen ? 'mindmap-fullscreen' : 'min-h-[500px]'"
               >
                 <svg ref="mindmapSvg" class="w-full h-full" :style="isFullscreen ? 'height: 100%' : 'min-height: 500px'"></svg>
@@ -176,7 +176,7 @@
                 <button
                   v-if="isFullscreen"
                   @click="toggleFullscreen"
-                  class="fixed top-4 right-4 z-50 flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/90 backdrop-blur shadow-lg text-sm text-text-primary hover:bg-white transition-colors cursor-pointer border border-border-light"
+                  class="fixed top-4 right-4 z-50 flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[rgba(255,252,247,0.94)] backdrop-blur shadow-lg text-sm text-text-primary hover:bg-white transition-colors cursor-pointer border border-[rgba(168,138,97,0.14)]"
                 >
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -227,8 +227,8 @@
                     :class="[
                       'max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed',
                       msg.role === 'user'
-                        ? 'bg-primary text-white rounded-br-md'
-                        : 'bg-bg-section text-text-primary rounded-bl-md border border-border-light'
+                        ? 'bg-[linear-gradient(135deg,#6f532f_0%,#af894e_55%,#dcc08d_100%)] text-white rounded-br-md shadow-[0_14px_28px_rgba(93,67,35,0.16)]'
+                        : 'bg-[rgba(255,249,242,0.9)] text-text-primary rounded-bl-md border border-[rgba(168,138,97,0.12)]'
                     ]"
                   >
                     <div v-if="msg.role === 'assistant'" class="chat-prose prose prose-slate prose-sm max-w-none" v-html="renderMarkdown(msg.content)"></div>
@@ -242,19 +242,19 @@
               </div>
 
               <!-- 输入区域 -->
-              <div class="flex gap-2 pt-3 border-t border-border-light">
+              <div class="flex gap-2 pt-3 border-t border-[rgba(168,138,97,0.12)]">
                 <input
                   v-model="chatInput"
                   @keydown.enter.prevent="sendQuestion"
                   type="text"
                   placeholder="输入你的问题..."
-                  class="flex-1 h-11 px-4 rounded-xl border border-border bg-white text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                  class="flex-1 h-11 px-4 rounded-xl text-sm text-text-primary placeholder:text-text-muted lux-input-field"
                   :disabled="chatLoading"
                 />
                 <button
                   @click="sendQuestion"
                   :disabled="!chatInput.trim() || chatLoading"
-                  class="h-11 px-5 rounded-xl bg-primary hover:bg-primary-dark text-white text-sm font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center gap-1.5"
+                  class="h-11 px-5 rounded-xl text-white text-sm font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center gap-1.5 lux-button-primary"
                 >
                   <svg v-if="chatLoading" class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -780,7 +780,7 @@ onBeforeUnmount(() => {
   margin-bottom: 0.75rem;
   color: var(--color-text-primary);
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--color-primary-light);
+  border-bottom: 2px solid rgba(168, 138, 97, 0.22);
 }
 .summary-prose :deep(h2) {
   font-size: 1.125rem;
@@ -789,7 +789,7 @@ onBeforeUnmount(() => {
   margin-bottom: 0.75rem;
   color: var(--color-text-primary);
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--color-border-light);
+  border-bottom: 1px solid rgba(168, 138, 97, 0.16);
 }
 .summary-prose :deep(h3) {
   font-size: 1rem;
@@ -828,12 +828,12 @@ onBeforeUnmount(() => {
   color: var(--color-text-secondary);
   font-style: normal;
   margin: 1rem 0;
-  background: var(--color-bg-section);
+  background: rgba(244, 235, 219, 0.42);
   border-radius: 0 8px 8px 0;
   padding: 0.75rem 1rem;
 }
 .summary-prose :deep(code) {
-  background: var(--color-bg-section);
+  background: rgba(244, 235, 219, 0.5);
   padding: 0.15rem 0.4rem;
   border-radius: 4px;
   font-size: 0.85em;
@@ -841,8 +841,8 @@ onBeforeUnmount(() => {
   font-weight: 500;
 }
 .summary-prose :deep(pre) {
-  background: #1e293b;
-  color: #e2e8f0;
+  background: #251d16;
+  color: #f7efe3;
   border-radius: 8px;
   padding: 1rem;
   overflow-x: auto;
@@ -861,7 +861,7 @@ onBeforeUnmount(() => {
   font-size: 0.875rem;
 }
 .summary-prose :deep(th) {
-  background: var(--color-bg-section);
+  background: rgba(244, 235, 219, 0.38);
   padding: 0.5rem 0.75rem;
   text-align: left;
   font-weight: 600;
@@ -899,7 +899,7 @@ onBeforeUnmount(() => {
   color: var(--color-primary);
 }
 .chat-prose :deep(code) {
-  background: rgba(0,0,0,0.06);
+  background: rgba(97, 72, 43, 0.08);
   padding: 0.1rem 0.35rem;
   border-radius: 3px;
   font-size: 0.85em;
@@ -922,8 +922,8 @@ onBeforeUnmount(() => {
   overflow: visible !important;
 }
 .mindmap-wrapper :deep(foreignObject div) {
-  font: 300 16px/20px sans-serif;
-  color: #333;
+  font: 500 16px/20px var(--font-body);
+  color: #2f271f;
 }
 
 /* 思维导图全屏样式 */
@@ -936,6 +936,6 @@ onBeforeUnmount(() => {
   z-index: 40;
   border-radius: 0 !important;
   border: none !important;
-  background: #ffffff;
+  background: #fbf6ef;
 }
 </style>

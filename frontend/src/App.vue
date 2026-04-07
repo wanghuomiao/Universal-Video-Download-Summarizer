@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-bg-main">
+  <div class="min-h-screen flex flex-col bg-bg-main lux-shell">
     <AppHeader
       :user="currentUser"
       @login="showAuthModal('login')"
@@ -15,7 +15,7 @@
         :showSlogan="!videoData || demoMode"
       />
       <!-- 视频信息 + AI 总结：左右双栏同屏布局 -->
-      <section v-if="videoData" class="py-4 sm:py-6 bg-white">
+      <section v-if="videoData" class="py-4 sm:py-6 bg-bg-section/70">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
           <div class="flex flex-col lg:flex-row gap-6">
             <!-- 左栏：视频信息 -->

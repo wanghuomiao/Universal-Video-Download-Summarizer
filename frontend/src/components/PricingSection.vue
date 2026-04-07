@@ -1,7 +1,8 @@
 <template>
-  <section id="pricing" class="py-16 sm:py-20 bg-white" aria-labelledby="pricing-heading">
+  <section id="pricing" class="py-16 sm:py-20 bg-transparent" aria-labelledby="pricing-heading">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-12">
+        <p class="section-kicker text-[11px] sm:text-xs mb-3">Membership Plans</p>
         <h2 id="pricing-heading" class="text-2xl sm:text-3xl font-bold text-text-primary mb-3">
           选择适合你的视频下载方案
         </h2>
@@ -12,7 +13,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
         <!-- 免费版 -->
-        <div class="bg-white rounded-2xl border border-border p-7 flex flex-col">
+        <div class="rounded-2xl p-7 flex flex-col surface-card">
           <div class="mb-6">
             <h3 class="text-lg font-semibold text-text-primary mb-1">免费版</h3>
             <p class="text-sm text-text-secondary">满足基础下载需求</p>
@@ -30,8 +31,8 @@
             </li>
           </ul>
           <button
-            class="w-full h-11 rounded-full border border-border text-sm font-medium text-text-primary transition-colors"
-            :class="user ? 'bg-gray-50 cursor-default' : 'hover:bg-gray-50 cursor-pointer'"
+            class="w-full h-11 rounded-full text-sm font-medium transition-colors"
+            :class="user ? 'lux-button-ghost cursor-default' : 'lux-button-ghost cursor-pointer'"
             @click="!user && $emit('need-login')"
           >
             {{ user ? '当前方案' : '免费注册' }}
@@ -39,11 +40,12 @@
         </div>
 
         <!-- VIP 版 -->
-        <div class="relative bg-gradient-to-br from-primary to-blue-600 rounded-2xl p-7 flex flex-col text-white overflow-hidden">
-          <div class="absolute top-4 right-4 px-3 py-1 bg-white/20 rounded-full text-xs font-medium backdrop-blur-sm">
+        <div class="relative rounded-2xl p-7 flex flex-col text-white overflow-hidden bg-[linear-gradient(145deg,#2b2119_0%,#5d4427_32%,#8f6a3f_62%,#d1af7b_100%)] shadow-[0_28px_60px_rgba(73,53,24,0.2)] border border-[rgba(221,195,154,0.28)]">
+          <div class="absolute top-4 right-4 px-3 py-1 bg-white/16 rounded-full text-xs font-medium backdrop-blur-sm border border-white/12">
             🔥 推荐
           </div>
-          <div class="absolute -top-20 -right-20 w-56 h-56 bg-white/5 rounded-full"></div>
+          <div class="absolute -top-20 -right-20 w-56 h-56 bg-white/8 rounded-full blur-2xl"></div>
+          <div class="absolute inset-x-6 bottom-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,232,200,0.5),transparent)]"></div>
           <div class="relative">
             <div class="mb-6">
               <h3 class="text-lg font-semibold mb-1">VIP 高级版</h3>
@@ -64,7 +66,7 @@
             </ul>
             <button
               @click="handleVipClick"
-              class="w-full h-11 rounded-full bg-white text-primary text-sm font-semibold hover:bg-white/90 transition-colors shadow-lg cursor-pointer"
+              class="w-full h-11 rounded-full bg-[rgba(255,252,247,0.96)] text-primary text-sm font-semibold hover:bg-white transition-colors shadow-[0_18px_32px_rgba(34,24,16,0.22)] cursor-pointer"
             >
               {{ user?.is_vip ? '续费 VIP' : '立即开通 VIP' }}
             </button>

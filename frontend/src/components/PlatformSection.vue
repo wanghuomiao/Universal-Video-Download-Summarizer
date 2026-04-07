@@ -1,7 +1,8 @@
 <template>
-  <section id="platforms" class="py-16 sm:py-20 bg-bg-section" aria-labelledby="platforms-heading">
+  <section id="platforms" class="py-16 sm:py-20 bg-transparent" aria-labelledby="platforms-heading">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-12">
+        <p class="section-kicker text-[11px] sm:text-xs mb-3">Global Coverage</p>
         <h2 id="platforms-heading" class="text-2xl sm:text-3xl font-bold text-text-primary mb-3">
           支持全球 <span class="text-primary">1800+</span> 视频平台下载
         </h2>
@@ -14,7 +15,7 @@
         <div
           v-for="platform in platforms"
           :key="platform.name"
-          class="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-white rounded-full border border-border-light shadow-sm hover:shadow-md hover:border-primary/30 transition-all"
+          class="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full transition-all surface-card hover:-translate-y-0.5 hover:border-primary/30"
         >
           <span class="text-lg">{{ platform.icon }}</span>
           <span class="text-sm font-medium text-text-primary">{{ platform.name }}</span>
