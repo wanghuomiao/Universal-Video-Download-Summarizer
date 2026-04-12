@@ -4,9 +4,13 @@
 
 核心能力
 1）多平台视频解析和下载
+![alt text](image.png)
 2）AI 视频总结摘要
 3）AI 生成思维导图
 4）AI 视频问答
 5）字幕导出
+![alt text](image-2.png)
 6）用户注册登录 + 会员权限
+![alt text](image-1.png)
 7）Stripe 国际支付
+![alt text](image-3.png)
